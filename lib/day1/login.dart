@@ -16,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Container(
           width: size.width,
           height: size.height,
-          padding: EdgeInsets.only(left: 20, top: 120, right: 20, bottom: 80),
+          padding: const EdgeInsets.only(left: 20, top: 120, right: 20, bottom: 80),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
