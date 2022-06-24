@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.white,
         title: const Text(
           'Create your account',
           style: TextStyle(color: Colors.black),
