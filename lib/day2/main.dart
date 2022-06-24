@@ -17,6 +17,15 @@ class _HomePageState extends State<HomePage> {
   bool isEightCharacter = false;
   bool hasOneNumber = false;
 
+  final myController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    myController.dispose();
+    super.dispose();
+  }
+
   onPasswordChanged(String password){
     final numericRegex = RegExp(r'[0-9]');
 
@@ -67,6 +76,7 @@ class _HomePageState extends State<HomePage> {
               height: 30,
             ),
             TextField(
+              controller: myController,
               onChanged:(password) => onPasswordChanged(password),
               obscureText: !isVisible,
               decoration: InputDecoration(
@@ -143,7 +153,13 @@ class _HomePageState extends State<HomePage> {
             MaterialButton(
               height: 40,
               minWidth: double.infinity,
-              onPressed: () {},
+              onPressed: () {
+                if(isEightCharacter == true && hasOneNumber == true){
+                  _showToast(context, myController.text);
+                } else {
+                  _showToast(context, 'Satisfy the above conditions');
+                }
+              } ,
             color: Colors.black,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10)
@@ -155,4 +171,16 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+  void _showToast(BuildContext context, String content) {
+    final scaffold = ScaffoldMessenger.of(context);
+    scaffold.showSnackBar(
+      SnackBar(
+        content: Text(content),
+        action: SnackBarAction(label: 'OKAY', onPressed: scaffold.hideCurrentSnackBar),
+      ),
+    );
+  }
 }
+
+
+
